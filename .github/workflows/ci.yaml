@@ -38,6 +38,8 @@ jobs:
           # Running doc tests separately is a workaround for https://github.com/rust-lang/cargo/issues/6669
           # Setting LD_LIBRARY_PATH is a workaround for https://github.com/TheBevyFlock/bevy_new_2d/pull/318#issuecomment-2585935350
           LD_LIBRARY_PATH="$(rustc --print target-libdir)" cargo test --locked --workspace --all-features --doc
+      - name: Build release
+        run: bevy build --yes  web --bundle
 
   # Run clippy lints.
   clippy:
@@ -103,3 +105,6 @@ jobs:
 
       - name: Check documentation
         run: cargo doc --locked --workspace --all-features --document-private-items --no-deps
+
+      - name: Build release
+        run: bevy build --yes --no-default-features web --bundle

@@ -25,6 +25,8 @@ impl Plugin for AppPlugin {
         // Spawn the main camera.
         app.add_systems(Startup, spawn_camera);
 
+        app.add_systems(Update, get_random_u128);
+
         // Add Bevy plugins.
         app.add_plugins(
             DefaultPlugins
@@ -91,4 +93,11 @@ fn spawn_camera(mut commands: Commands) {
         // for debugging. So it's good to have this here for future-proofing.
         IsDefaultUiCamera,
     ));
+}
+
+fn get_random_u128() -> Result {
+    let mut buf = [0u8; 16];
+    getrandom::fill(&mut buf).unwrap();
+    info!("{:?}", buf);
+    Ok(())
 }
