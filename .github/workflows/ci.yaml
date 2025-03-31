@@ -32,6 +32,4 @@ jobs:
 
       - name: Build release
         run: 'bevy build --yes --no-default-features web --bundle'
-        env:
-          RUSTFLAGS: '--cfg getrandom_backend="wasm_js"'
 
