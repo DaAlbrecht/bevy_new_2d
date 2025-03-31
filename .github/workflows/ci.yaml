@@ -26,6 +26,10 @@ jobs:
 
       - name: Install dependencies
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev
+
+      - name: Install tools for WASM build
+        run: cargo install --git https://github.com/TheBevyFlock/bevy_cli --locked bevy_cli
+
       - name: Build release
         run: 'bevy build --yes --no-default-features web --bundle'
         env:
